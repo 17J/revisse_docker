@@ -1,0 +1,34 @@
+# Stand for YAML Ain't Markup Language
+# It is a data serialization language like json,xml
+# it is human readable language ued to exchange data between people and computer it suitbale for all language
+# it is not programming language it is configurtion files
+# the extension is yaml or .yml
+
+# serialization:: is the process of converting data to a format that could be easily stored or sent
+# over network
+
+# Everthing is in KEY:VALUE pair
+# YAML doesn't allow the use of tab character for indentations.Use Spaces instead
+# keys are always string and values can be any data type it supports boolean,numbers,list,array,string
+# example
+# name:Rahul
+# city:Smp
+# skill:Devops
+# foods:
+#    - Apple
+#    - Orange
+#    - Mango
+#    - Straberry
+# language:
+#   perl: Elite
+#   python: Elite
+# education: |
+#   4 GCDE
+
+# YAML uses Newlines and Indentations as oppsosed to oppsosed to JSON,which uses brackets and braces
+
+# PyYAML is a YAML parser for python
+# Using the PyYAML module, we can perform various actions such as reading and writing complex configuration YAML files and Serialize YAML data
+# We can also Convert the YAML file into a Python Dictionary
+
+# pip install pyyaml

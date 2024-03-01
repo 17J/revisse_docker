@@ -1,0 +1,286 @@
+# comment # by
+it can be inline or separate line
+#Yaml is usefull
+# service: httpd #name of the service
+# state: started #state of the service
+
+####Boolean
+# True,true,On & Yes on,yes all are equal ==> Boolean True
+# False false off &No no, Off all are equal ==> Boolean False
+
+# example 1
+# ---
+
+# # foo:True #This indicate Activate
+# # bar:false
+# # device1:On
+# # device2:Off
+# # isActive:Yes
+# # isEligible:No
+
+####Numbers
+
+# YAML supports integers,float and exponential numbers
+
+# it is also supports number systems like decimal,octal(0),hexadecimal(0x) and NAN(not a number) and infinity
+
+---
+# integer: 15
+# float: 2.5
+# exponential: 1.414e+3
+# integers: 123
+# octal: 0123
+# hexadecimal: 0x123
+# not_a_number: .NAN
+# infinity: .inf
+# negative_infinity: -.inf
+
+# ---
+# int: 45
+# floats: 2.30
+# exponential: 2.14e+3
+# ints: 95
+# not_a_num: .NAN
+
+####Strings
+
+#String in YAML can be represented with or without quotes
+#But, escape sequences are evaluated only when string are enclosed in double-quote
+
+# string1: Hello There, this is rahul and i am Devops Engineer
+# string2: Hello there, this is rahul \n and i am devops Engineer ##Escape seq. are not evalutaed
+# string3: "Hello there this is rahul and \n I am Devops Engineer" ## Escape seq. are evaluated if enclosed in quotes
+# string4: "Hello Rahul How Are You \n I am fine" ##Escape so it evaluated if have double quotes
+# string5: Hello Joshi Ji \n How Are You ## It not evaluated it simple print whole
+# string6: Hello hi Who Are You \n I am fine ## It not evalutaed it does not have double quotes
+# string7: "Hi there \n how are you" ## it is evaliauted
+
+
+#### Multiline string as value to ke using character
+# 1.fold (>): Does not interpret Newlines
+# 2. block (|): interpret Newlines
+
+# string_with_fold: >  ==> output of this in one single line
+#  This is rahul
+#  and i work as 
+#  Devops Engineer.
+
+# string_with_pipe: |   ==>> output of it is in multi break line as written
+#  This is Rahul
+#  and i work as
+#  Devops Engineer.
+
+
+#Above output Show whitespace 
+#to remove white space
+# 1. fold (>-)
+# 2. block(|-)
+# ---
+# string_with_fold: >-     ==> output of this in one single line but not have white space
+#  This is rahul
+#  and i am Devops
+#  Engineer 
+# string_with_block: |-    ==>> output of it is in multi break line as written but not have white space
+#  This is Rahul Joshi 
+#  and I am Work as
+#  Devops Engineer
+
+
+####Dictionaries in YAML can also be represented inline
+####Values can be a nested dictionary or a list
+
+# ---
+# data_01:
+#  name:rahul
+#  age:10
+#  role:Devops_Engineer
+# data_02: { name:rahul, age:10m role: Devops_Engineer }
+# data_03:
+#   details:
+#    name:rahul
+#    age:10
+#    role:Devops_engineer
+#   certifications:
+#    CKA
+#    CKAD 
+#    CKS 
+#    DCA
+
+# ###Null in YAML indicated a null value
+# #Represented with a tilde(~) or the unquoted null string literal
+
+# name:~
+# age:null
+# city:null
+# home:~
+# chome:null
+# youhome:~
+
+
+####List 
+###List in YAML supports both scalars and complex types like directories/mapping
+
+# ---
+# list_01: [ 1,2,3 ]
+# list_02:
+#  - 4
+#  - 5
+#  - 6
+# list_03:
+#  - "one"
+#  - "two"
+#  - "three"
+#  - "four"
+# spec:
+#   type: NodePort
+#   ports:
+#    - port: 80
+#      name: http
+#    - port: 443
+#      name: https
+
+
+#####Block vs Flow YAML
+
+# ->Block style uses spaces for structuring the document. It is much easier to read but less compact
+
+# example:
+#   ---
+#   color:
+#    - red
+#    - blue
+#    - pink
+#    - Orange
+
+#   ---
+#   data:
+#    name: rahul
+#    age: 12
+  
+
+#   ---
+#   city:
+#     main: ram
+#     oldmain: delhiram
+  
+
+
+# ->Flow Style
+#  it uses inline way of structuring with Indentations ::with square bracket [] and curly bracket {} for mapping less easy to read but provides more compactness
+
+#  ---
+#  color: [ red,blue,green,orange ]
+#  data: {name:rahul,city:smp}
+#  friend: [hey, bey, gey]
+#  cities: {maincity:smp,oldcity:delhi}
+
+
+
+####Set:: set in yaml contains unique values similar to Python's set Data type
+#set are preceded by the question mark (?) like list items preceded by hypenns(-)
+#We need to maintain that the daya type is set using "!!set" after the set name
+#Duplicate values are removed automatically
+
+example 1:
+
+# ---
+#   set_automatically: !!set
+#    ? 1
+#    ? 1
+#    ? 2
+#    ? 3
+#    ? Rahul
+#    ? Devops
+#    ? rahul
+
+
+
+# example 2:
+#   ---
+#     set_auto: !!set
+#      ? 20
+#      ? 20
+#      ? rahul
+#      ? joshi
+#      ? Rahul
+#      ? rahul 
+#      ? delgi
+
+# example 3
+#  ---
+#   set_newone: !!set
+#    ? 25
+#    ? 17
+#    ? 35
+#    ? rahu
+#    ? rahu
+#    ? Joshi 
+#    ? Joshi
+
+
+##Anchors and Extension
+
+##Yaml Anchors are a feature which let you identify an item and then refrenece it elsewhere in your file
+##Anchors are created using the & sign followed by an alias name
+## We can use this alias later to reference the value using * sign
+
+# ---
+#   services:
+#    wordpress:
+#     image: wordpress:latest
+#     restart: &restart_policy always
+#     enviroment: &env_vars
+#      app: webservices
+#      anv: production
+#   mysql:
+#     image: mysql:3.8
+#     restart: *restart_policy
+#     enviroment: *env_vars
+
+
+##Extension is used to added copied values extension <<:
+#YAML extension extends the Anchor Values to add additional values
+
+
+
+# ---
+#   services:
+#    wordpress:
+#     image: wordpress:latest
+#     restart: &restart_policy always
+#     enviroment: &env_vars
+#      app: webservices
+#      anv: production
+#   mysql:
+#     image: mysql:3.8
+#     restart: *restart_policy
+#     <<: *env_vars
+#     type:database
+#     locations:demo
+
+####Placeholder is left read it 
+
+###Multiple files in YAML
+##All YAML files can optinally being with --- and end  with --- which  indicates the start and end of a document
+##Multiple YAML documents can be clubbbed in a single file by sepating them with --- The YAML parser will recognize each set of dashes
+#the beginning of a new document
+
+# ---
+#   #A List of tasty fruits
+#     - apple
+#     - mango
+#     - pineapple
+#     - orange
+# ---
+#   cities:
+#    - delhi
+#    - mumbai
+#    - newyour
+#    - banglore
+# ---
+#   companies:
+#    - Dell
+#    - Microsoft
+#    - Apple
+#    - Tesla
+# ---
